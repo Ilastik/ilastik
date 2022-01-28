@@ -4,9 +4,13 @@ import dataclasses
 
 @enum.unique
 class TestData(str, enum.Enum):
+    __test__ = False
     DATA_1_CHANNEL: str = ("Data_1channel.png", "yx", "yxc")
     DATA_3_CHANNEL: str = ("Data_3channel.png", "yxc", "yxc")
     DATA_1_CHANNEL_3D: str = ("Data_3D.npy", "zyxc", "zyxc")
+
+    DATA_1_CHANNEL_SEG: str = ("Data_1channel_Segmentation.png", "yx", "yxc")
+    DATA_1_CHANNEL_PRED: str = ("Data_1channel_Probabilities.png", "yxc", "yxc")
 
     def __new__(cls, value, axes, headless_axes):
         obj = str.__new__(cls, value)
@@ -18,6 +22,7 @@ class TestData(str, enum.Enum):
 
 @enum.unique
 class TestProjects(enum.Enum):
+    __test__ = False
     PIXEL_CLASS_1_CHANNEL_XYC: str = "PixelClass.ilp"
     PIXEL_CLASS_1_CHANNEL_XY: str = "2464_PixelClassification_xy_input.ilp"
     PIXEL_CLASS_3_CHANNEL: str = "PixelClass3Channel.ilp"
@@ -25,6 +30,9 @@ class TestProjects(enum.Enum):
     PIXEL_CLASS_NO_CLASSIFIER: str = "PixelClassNoClassifier.ilp"
     PIXEL_CLASS_NO_DATA: str = "PixelClassNoData.ilp"
     PIXEL_CLASS_3D_2D_3D_FEATURE_MIX: str = "PixelClass3D_2D_3D_feature_mix.ilp"
+
+    OBJ_CLASS_SEG_1_CHANNEL: str = "ObjectClassSeg.ilp"
+    OBJ_CLASS_PRED_1_CHANNEL: str = "ObjectClassPred.ilp"
 
 
 @dataclasses.dataclass

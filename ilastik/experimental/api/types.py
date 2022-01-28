@@ -2,7 +2,19 @@ import numpy
 import abc
 
 
-class Pipeline(abc.ABC):
+class PixelClassificationPipeline(abc.ABC):
     @abc.abstractmethod
-    def predict(self, data: numpy.ndarray) -> numpy.ndarray:
+    def get_probabilities(self, raw_data: numpy.ndarray) -> numpy.ndarray:
+        ...
+
+
+class ObjectClassificationFromSegmentationPipeline(abc.ABC):
+    @abc.abstractmethod
+    def get_object_probabilities(self, raw_data: numpy.ndarray, segmentation_image: numpy.ndarray) -> numpy.ndarray:
+        ...
+
+
+class ObjectClassificationFromPredictionPipeline(abc.ABC):
+    @abc.abstractmethod
+    def get_object_probabilities(self, raw_data: numpy.ndarray, prediction_maps: numpy.ndarray) -> numpy.ndarray:
         ...
